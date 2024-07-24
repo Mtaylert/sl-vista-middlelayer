@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+
 from app.routers.intent_detection.schemas import IntentClassification, IntentResponse
 
 router = APIRouter()

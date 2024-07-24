@@ -1,7 +1,8 @@
-from fastapi import APIRouter
 import pinecone
-from app.settings import inject_settings
+from fastapi import APIRouter
 from pinecone import Pinecone
+
+from app.settings import inject_settings
 
 router = APIRouter()
 settings = inject_settings()

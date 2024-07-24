@@ -1,11 +1,21 @@
+from typing import Any, Dict, List, Optional, Union
+
 from pydantic import BaseModel
 
-from typing import Optional, List, Union
+
+class SalesAchievement(BaseModel):
+    category: str
+    achieved: bool
+
+
+class RecommendationAchievement(BaseModel):
+    prediction_label: str
+    recommendation_instruction: Optional[Union[str, List[str]]]
 
 
 class RecommendationInput(BaseModel):
-    prediction_label: str
-    recommendation_instruction: Optional[Union[str, List[str]]]
+    recommendation_checklist: Optional[RecommendationAchievement]
+    sales_checklist: Optional[SalesAchievement]
 
 
 class RecommendationResponse(BaseModel):
@@ -19,4 +29,5 @@ class RecommendationMessaging(BaseModel):
 
 
 class RecommendationOutput(BaseModel):
-    current_recommendations: List[RecommendationMessaging]
+    current_recommendations: Optional[List[RecommendationMessaging]] = None
+    sales_checklist: Optional[Dict[str, bool]] = None

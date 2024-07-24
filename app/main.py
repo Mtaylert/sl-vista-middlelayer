@@ -1,12 +1,14 @@
-from fastapi import FastAPI
-from app.routers.search.search import router as search_router
-from app.routers.intent_detection.intent_detection import router as intent_router
-from app.routers.websockets.websockets import router as websocket_router
-from starlette.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager, contextmanager
-from app.cache_manager import CacheManager
 import asyncio
+from contextlib import asynccontextmanager, contextmanager
+
 import uvicorn
+from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
+
+from app.cache_manager import CacheManager
+from app.routers.intent_detection.intent_detection import router as intent_router
+from app.routers.search.search import router as search_router
+from app.routers.websockets.websockets import router as websocket_router
 
 
 @asynccontextmanager
