@@ -1,3 +1,9 @@
+from datetime import datetime
+
+def convert_to_datetime(item):
+    return datetime.strptime(item['timestamp'], '%m/%d/%Y %H:%M:%S')
+
+
 class CacheManager:
     local_cache = []
     sales_cache = {}
@@ -17,12 +23,13 @@ class CacheManager:
 
     @classmethod
     def fetch_from_cache(cls):
+        sorted_data = []
         if cls.local_cache or cls.sales_cache:
             print("FOUND")
             if cls.local_cache:
-                cls.local_cache.reverse()
+                sorted_data = sorted(cls.local_cache, key=convert_to_datetime, reverse=True)
             return {
-                "recommendation": cls.local_cache,
+                "recommendation": sorted_data,
                 "sales_checklist": cls.sales_cache,
             }
         else:
